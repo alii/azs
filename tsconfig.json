@@ -9,7 +9,9 @@
 		"declaration": true,
 		"declarationMap": true,
 		"moduleResolution": "node",
-		"strict": true
+		"strict": true,
+		"emitDecoratorMetadata": true,
+		"experimentalDecorators": true
 	},
 	"exclude": ["node_modules", "dist"]
 }

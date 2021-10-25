@@ -1,7 +1,7 @@
 {
-	"name": "node-template",
-	"description": "An ESM node package template with ESLint, Prettier & TypeScript built in. Powered by esbuild.",
-	"version": "1.0.5",
+	"name": "azs",
+	"description": "🤓 Amplify Zod schemas with methods",
+	"version": "1.0.0",
 	"types": "./dist/index.d.ts",
 	"type": "module",
 	"exports": {
@@ -10,7 +10,7 @@
 	},
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/alii/node-template.git"
+		"url": "git+https://github.com/alii/azs.git"
 	},
 	"author": "Alistair Smith <alistairsmith01@gmail.com> (https://alistair.sh)",
 	"license": "MIT",
@@ -26,7 +26,8 @@
 		"eslint-config-xo-typescript": "^0.45.2",
 		"prettier": "^2.4.1",
 		"tsup": "^5.5.0",
-		"typescript": "^4.4.4"
+		"typescript": "^4.4.4",
+		"zod": "^3.11.4"
 	},
 	"scripts": {
 		"build": "tsup src/index.ts --dts --format esm,cjs",
@@ -34,16 +35,23 @@
 		"fix": "eslint ./src/**/*.ts --fix"
 	},
 	"bugs": {
-		"url": "https://github.com/alii/nextkit/issues"
+		"url": "https://github.com/alii/azs/issues"
 	},
-	"homepage": "https://github.com/alii/nextkit#readme",
+	"homepage": "https://github.com/alii/azs#readme",
 	"files": [
 		"dist",
 		"package.json"
 	],
 	"keywords": [
-		"node",
-		"template"
+		"zod",
+		"schema",
+		"typescript"
 	],
-	"packageManager": "yarn@3.1.0"
+	"packageManager": "yarn@3.1.0",
+	"peerDependencies": {
+		"zod": "*"
+	},
+	"dependencies": {
+		"type-fest": "^2.5.1"
+	}
 }
