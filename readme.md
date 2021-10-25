@@ -12,7 +12,7 @@ const userSchema = z.object({
 	github: z.string().url(),
 });
 
-const {parse} = azs(userSchema, {
+const parse = azs(userSchema, {
 	isAdult(user) {
 		return user.age >= 18;
 	},

@@ -1,7 +1,7 @@
 {
 	"name": "azs",
 	"description": "🤓 Amplify Zod schemas with methods",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"types": "./dist/index.d.ts",
 	"type": "module",
 	"exports": {
@@ -32,7 +32,8 @@
 	"scripts": {
 		"build": "tsup src/index.ts --dts --format esm,cjs",
 		"lint": "eslint ./src/**/*.ts",
-		"fix": "eslint ./src/**/*.ts --fix"
+		"fix": "eslint ./src/**/*.ts --fix",
+		"release": "yarn build&&yarn npm publish"
 	},
 	"bugs": {
 		"url": "https://github.com/alii/azs/issues"
