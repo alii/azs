@@ -4,14 +4,10 @@
 		"target": "es6",
 		"sourceMap": true,
 		"esModuleInterop": true,
-		"rootDir": "src",
-		"outDir": "dist",
 		"declaration": true,
 		"declarationMap": true,
 		"moduleResolution": "node",
-		"strict": true,
-		"emitDecoratorMetadata": true,
-		"experimentalDecorators": true
+		"strict": true
 	},
 	"exclude": ["node_modules", "dist"]
 }

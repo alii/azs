@@ -1,30 +1,20 @@
-import {z} from 'zod';
-import {JsonValue} from 'type-fest';
+import {type z} from 'zod';
 
-export type SchemaFor<T> = z.ZodType<T, z.ZodTypeDef, T>;
+export type MethodInit<T> = Record<string, (this: T, value: T, ...args: any[]) => any>;
 
-type MethodsInit<Schema extends SchemaFor<JsonValue>> = Record<
-	string,
-	(value: z.infer<Schema>) => unknown
->;
+export type DropFirstTuple<T extends any[]> = T extends [any, ...infer R] ? R : never;
 
-export function azs<Schema extends SchemaFor<JsonValue>, Methods extends MethodsInit<Schema>>(
-	schema: Schema,
-	// Nice hack to show readible error messages
-	methods: Methods extends Record<'_data', unknown>
-		? 'You cannot call a method _data. Please rename _data to something else! _data is reserved for accessing the parsed result.' &
-				never
-		: Methods
+export function azs<Out, Def extends z.ZodTypeDef, In, M extends MethodInit<Out>>(
+	schema: z.Schema<Out, Def, In>,
+	methods: M
 ) {
-	return (raw: unknown) => {
-		const result = schema.parse(raw) as z.infer<Schema>;
-
-		type Res = {
-			[Key in keyof Methods]: () => ReturnType<Methods[Key]>;
+	return schema.transform(value => {
+		type Methods = {
+			[Key in keyof M]: (...args: DropFirstTuple<Parameters<M[Key]>>) => ReturnType<M[Key]>;
 		};
 
-		// eslint-disable-next-line @typescript-eslint/consistent-type-assertions
-		const value: Res = {} as Res;
+		// @ts-expect-error Keys are passed in the next lines
+		const methodsResult: Methods = {};
 
 		for (const key in methods) {
 			if (!(key in methods)) {
@@ -33,14 +23,16 @@ export function azs<Schema extends SchemaFor<JsonValue>, Methods extends Methods
 
 			const method = methods[key];
 
-			value[key] = () => method(result) as ReturnType<Methods[typeof key]>;
+			methodsResult[key] = (...args) =>
+				// eslint-disable-next-line @typescript-eslint/no-unsafe-return
+				method.call(value, value, ...args) as ReturnType<M[keyof M]>;
 		}
 
 		return {
 			...value,
-			_data: result,
+			...methodsResult,
 		};
-	};
+	});
 }
 
 export default azs;

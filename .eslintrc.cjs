@@ -14,6 +14,8 @@ module.exports = {
 		'@typescript-eslint/comma-dangle': 'off',
 		'@typescript-eslint/naming-convention': 'off',
 		'@typescript-eslint/indent': 'off',
+		'object-shorthand': 'off',
+		'arrow-body-style': 'off',
 	},
 	ignorePatterns: ['dist'],
 };
