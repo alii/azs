@@ -15,10 +15,15 @@ const userSchema = z.object({
 });
 
 const schema = azs(userSchema, {
+	// Basic example
 	isAdult: user => {
 		return user.age >= 18;
 	},
 
+	// Methods can take arguments, but the
+	// first argument will always be the parsed
+	// value. You also don't have to type
+	// the first argument.
 	is: (user, name: string) => {
 		return user.name === name;
 	},
@@ -29,4 +34,10 @@ const schema = azs(userSchema, {
 		return this.name;
 	},
 });
+
+const user = schema.parse(someRandomJSONThatMightBeAUser);
+
+user.isAdult();
+user.getName();
+user.is('Colin McDonnell');
 ```

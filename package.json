@@ -1,7 +1,7 @@
 {
 	"name": "azs",
 	"description": "🤓 Amplify Zod schemas with methods",
-	"version": "1.1.0",
+	"version": "1.1.1",
 	"types": "./dist/index.d.ts",
 	"type": "module",
 	"exports": {
