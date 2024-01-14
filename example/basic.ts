@@ -1,5 +1,5 @@
 import {z} from 'zod';
-import azs from '../src/index';
+import {azs} from '../src/index.ts';
 
 const userSchema = z.object({
 	age: z.number(),
@@ -18,7 +18,7 @@ const schema = azs(userSchema, {
 
 	// Or, you can access `this` which will be
 	// the parsed value
-	getName() {
+	getName(user) {
 		return this.name;
 	},
 });
@@ -36,3 +36,4 @@ console.log('name:', user.getName());
 
 // Safely still access the original properties
 console.log('age', user.age);
+console.log('name', user.name);

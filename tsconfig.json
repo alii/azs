@@ -1,13 +1,15 @@
 {
 	"compilerOptions": {
 		"module": "ESNext",
-		"target": "es6",
+		"target": "ESNext",
 		"sourceMap": true,
 		"esModuleInterop": true,
 		"declaration": true,
 		"declarationMap": true,
-		"moduleResolution": "node",
-		"strict": true
+		"moduleResolution": "Bundler",
+		"strict": true,
+		"allowImportingTsExtensions": true,
+		"noEmit": true
 	},
 	"exclude": ["node_modules", "dist"]
 }

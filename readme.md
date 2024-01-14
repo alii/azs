@@ -6,7 +6,7 @@ A more advanced example can be found [here](./example/basic.ts).
 
 ```ts
 import {z} from 'zod';
-import azs from 'azs';
+import {azs} from 'azs';
 
 const userSchema = z.object({
 	age: z.number(),
@@ -22,14 +22,15 @@ const schema = azs(userSchema, {
 
 	// Methods can take arguments, but the
 	// first argument will always be the parsed
-	// value. You also don't have to type
-	// the first argument.
+	// value. You don't have to specify a type
+	// for the first argument.
 	is: (user, name: string) => {
 		return user.name === name;
 	},
 
 	// Or, you can access `this` which will be
-	// the parsed value
+	// the parsed value. Notice how this is a
+	// method, not an arrow function property.
 	getName() {
 		return this.name;
 	},
