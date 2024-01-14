@@ -18,7 +18,7 @@ const schema = azs(userSchema, {
 
 	// Or, you can access `this` which will be
 	// the parsed value
-	getName(user) {
+	getName() {
 		return this.name;
 	},
 });
