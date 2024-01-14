@@ -33,7 +33,7 @@
 		"zod": "^3.22.4"
 	},
 	"scripts": {
-		"build": "tsup src/index.ts --dts --format esm,cjs",
+		"build": "tsup src/index.ts --dts --format esm,cjs&&yarn check-export-types",
 		"lint": "eslint ./src/**/*.ts",
 		"fix": "eslint ./src/**/*.ts --fix",
 		"release": "yarn build&&yarn npm publish",
